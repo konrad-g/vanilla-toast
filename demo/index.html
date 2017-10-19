@@ -2,10 +2,10 @@
 <html style="
     width: 100%;
     height: 100%;
->
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
+    >
+<head>
+    <meta charset="UTF-8"/>
+    <title>Vanilla Toast (vanilla-toast)</title>
 
     <!-- Logic libraries -->
     <script src="../src/libs/jquery.min.js"></script>
@@ -27,36 +27,22 @@
 <h1>Vanilla Toast (vanilla-toast)</h1>
 
 <div class="control-panel">
-    OLD
-    <button id="showInfo">Show info</button>
-    <button id="showSuccess">Show success</button>
-    <button id="showWarning">Show warning</button>
-    <button id="showError">Show error</button>
-    <button id="showMany">Show many</button>
-</div>
-
-<div class="control-panel">
     <div class="column-left">
-        <label for="type">Type</label>
-        <select id="type" name="type">
-            <option>Random</option>
-            <option>Info</option>
-            <option>Success</option>
-            <option>Warning</option>
-            <option>Error</option>
-            <option>Plain</option>
-            <option>Custom</option>
-        </select>
+        <div class="column-title">Type</div>
+        <input id="type-info" type="radio" name="type" value="info" checked/><label for="type-info">Info</label>
+        <input id="type-success" type="radio" name="type" value="success"/><label for="type-success">Success</label>
+        <input id="type-warning" type="radio" name="type" value="warning"/><label for="type-warning">Warning</label>
+        <input id="type-error" type="radio" name="type" value="error"/><label for="type-error">Error</label>
+        <input id="type-plain" type="radio" name="type" value="plain"/><label for="type-plain">Plain</label>
+        <input id="type-custom"type="radio" name="type" value="custom"/><label for="type-custom">Custom</label>
         <button id="showToast">Show Toast</button>
     </div>
     <div class="column-right">
-        <label for="position">Position</label>
-        <select id="position" name="position">
-            <option>Bottom Left</option>
-            <option>Bottom Right</option>
-            <option>Top Left</option>
-            <option>Top Right</option>
-        </select>
+          <div class="column-title">Position</div>
+          <input id="position-bottom-left" type="radio" name="position" value="bottom-left" checked/><label for="position-bottom-left">Bottom Left</label>
+          <input id="position-bottom-right" type="radio" name="position" value="bottom-right"/><label for="position-bottom-right">Bottom Right</label>
+          <input id="position-top-left" type="radio" name="position" value="top-left"/><label for="position-top-left">Top Left</label>
+          <input id="position-top-right" type="radio" name="position" value="top-right"/><label for="position-top-right">Top Right</label>
     </div>
 </div>
 
@@ -82,6 +68,17 @@ TODO:
 
     var toastParent = $("body");
     var toastLogger = new Toast(toastParent);
+
+    var showToast = document.querySelector("#showToast");
+    showToast.addEventListener("click", function() {
+      var type = document.querySelector('input[name="type"]:checked').value;
+      var position = document.querySelector('input[name="position"]:checked').value;
+
+      console.log("type: " + type + ", " + position);
+    });
+
+
+    // FIXME: OLD
 
     $("#showInfo").click(function() {
         toastLogger.showInfo("This is info. It is really long and it doesn't really fit into this small toast", "This is info messege");
