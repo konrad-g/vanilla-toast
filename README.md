@@ -11,6 +11,3 @@ Vanilla Toast is a JavaScript notification element that doesn't require any depe
 ## Suggested Dependencies For Additional Support
 
 ## How To Develop
-
-## Author
-

@@ -52,6 +52,10 @@
   float: left;
 }
 
+.dj-toast-icon-plain {
+  display: none;
+}
+
 .dj-toast-icon-info {
   @extend .dj-toast-icon;
   background-image: url("../assets/icToastInfo.svg");
@@ -73,6 +77,11 @@
 .dj-toast-icon-error {
   @extend .dj-toast-icon;
   background-image: url("../assets/icToastError.svg");
+  background-size: contain;
+}
+
+.dj-toast-icon-custom {
+  @extend .dj-toast-icon;
   background-size: contain;
 }
 

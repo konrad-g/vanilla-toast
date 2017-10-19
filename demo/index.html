@@ -8,12 +8,11 @@
     <title></title>
 
     <!-- Logic libraries -->
-    <script src="../../common/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="../../common/bower_components/pointer-events-polyfill/dist/pep.min.js"></script>
+    <script src="../src/libs/jquery.min.js"></script>
 
     <!-- Element files -->
-    <script src="scripts/src/Toast.js"></script>
-    <link href="stylesheets/main.css" rel="stylesheet" type="text/css">
+    <script src="../src/scripts/Toast.js"></script>
+    <link href="../src/styles/main.css" rel="stylesheet" type="text/css">
 
 </head>
 <body style="
@@ -25,11 +24,59 @@
     padding: 10px;"
 >
 
-<button id="showInfo">Show info</button>
-<button id="showSuccess">Show success</button>
-<button id="showWarning">Show warning</button>
-<button id="showError">Show error</button>
-<button id="showMany">Show many</button>
+<h1>Vanilla Toast (vanilla-toast)</h1>
+
+<div class="control-panel">
+    OLD
+    <button id="showInfo">Show info</button>
+    <button id="showSuccess">Show success</button>
+    <button id="showWarning">Show warning</button>
+    <button id="showError">Show error</button>
+    <button id="showMany">Show many</button>
+</div>
+
+<div class="control-panel">
+    <div class="column-left">
+        <label for="type">Type</label>
+        <select id="type" name="type">
+            <option>Random</option>
+            <option>Info</option>
+            <option>Success</option>
+            <option>Warning</option>
+            <option>Error</option>
+            <option>Plain</option>
+            <option>Custom</option>
+        </select>
+        <button id="showToast">Show Toast</button>
+    </div>
+    <div class="column-right">
+        <label for="position">Position</label>
+        <select id="position" name="position">
+            <option>Bottom Left</option>
+            <option>Bottom Right</option>
+            <option>Top Left</option>
+            <option>Top Right</option>
+        </select>
+    </div>
+</div>
+
+<div class="custom-container">
+
+</div>
+
+<div class="links">
+    <h2>Links:</h2>
+    <a href="https://github.com/konrad-g/vanilla-toast.git">Source Code</a>
+</div>
+
+TODO:
+- Add custom icons or no icons
+- No jQuery
+- Web Component
+- Position configurable
+- Demonstrade showing toast in div
+- Add Bower instruction
+- Release v1.0
 
 <script>
 
@@ -51,6 +98,9 @@
     $("#showError").click(function() {
         toastLogger.showError("This is error", "This is error messege. It is really long and it doesn't really fit into this small toast");
     });
+
+
+    // TODO: Toast custom, set: background-image: url("../assets/icToastError.svg");
 
     $("#showMany").click(function() {
         for(var i = 0; i < 10; i++) {

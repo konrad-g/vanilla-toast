@@ -8,8 +8,6 @@ enum TypeToast {
 
 class Toast {
 
-  private static instance: Toast;
-
   private static FADE_MS = 400;
   private REMOVE_TIME_MS = 2000;
 
@@ -39,6 +37,17 @@ class Toast {
   public showError(title: string, message: string) {
     let text: string = this.getCustomToast(title, message, "error");
     let toast: any = this.addToast(text);
+  }
+
+  public showPlain(title: string, message: string) {
+      let text: string = this.getCustomToast(title, message, "plain");
+      let toast: any = this.addToast(text);
+  }
+
+  public showCustom(title: string, message: string, iconUrl: string) {
+    // TODO: Add
+      let text: string = this.getCustomToast(title, message, "error");
+      let toast: any = this.addToast(text);
   }
 
   private getCustomToast(title: string, message: string, type: string): string {
