@@ -65,7 +65,7 @@ class VanillaToast {
 
     let self = this;
 
-    let container: any = this.getContainer();
+    let container: any = $(this.getContainer());
     let toast: any = $(toastHtml);
     toast.hide();
     toast.appendTo(container);
@@ -88,12 +88,12 @@ class VanillaToast {
 
   private getContainer(): any {
 
-    if ($(".dj-toast-container").length == 0) {
+    if (this.parent.getElementsByClassName("dj-toast-container").length == 0) {
       // Container doesn't exist
-      this.parent.append("<div class=\"dj-toast-container\"></div>");
+      this.parent.insertAdjacentHTML("afterbegin", "<div class=\"dj-toast-container\"></div>");
     }
 
-    return $(".dj-toast-container");
+    return this.parent.getElementsByClassName("dj-toast-container")[0];
   }
 
   private removeToast(toast: any) {
