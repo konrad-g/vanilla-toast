@@ -1,0 +1,24 @@
+{
+  "name": "vanilla-toast",
+  "description": "Vanilla Toast is a JavaScript notification element that doesn't require any dependencies.",
+  "main": "gulpfile.js",
+  "authors": [
+    "Konrad Gadzinowski <contact@konradg.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "vanilla",
+    "toast",
+    "typescript",
+    "ts",
+    "notification"
+  ],
+  "homepage": "https://github.com/konrad-g/vanilla-toast",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

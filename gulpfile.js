@@ -17,8 +17,6 @@ var OUTPIT_FOLDER_PATH = './dist';
 var TRANSPILE_TYPESCRIPT_PATH = './src/';
 var TRANSPILE_SCSS_PATH = './src/';
 
-var versionNumber = Math.random().toString(36).substring(8);
-
 // Client imports
 
 var IMPORT_STYLES = [
@@ -26,7 +24,7 @@ var IMPORT_STYLES = [
 ];
 
 var IMPORT_SCRIPTS = [
-  "./src/Toast.js",
+  "./src/VanillaToast.js"
 ];
 
 gulp.task('clean', function () {
@@ -38,7 +36,7 @@ gulp.task('clean', function () {
 gulp.task('minimize-js', function () {
 
   gulp.src(IMPORT_SCRIPTS)
-    .pipe(concatJs({path: 'scripts-' + versionNumber + '.min.js'}))
+    .pipe(concatJs({path: 'VanillaToast.min.js'}))
     .pipe(uglify())
     .pipe(gulp.dest(OUTPIT_FOLDER_PATH));
 
@@ -47,8 +45,8 @@ gulp.task('minimize-js', function () {
 gulp.task('minimize-css', function () {
 
   gulp.src(IMPORT_STYLES)
-    .pipe(concatCss('styles-' + versionNumber + '.min.css', {rebaseUrls: true}))
-    .pipe(cleanCSS({relativeTo: './public/out/', target: './public/out/', rebase: true}))
+    .pipe(concatCss('VanillaToast.min.css', {rebaseUrls: true}))
+    .pipe(cleanCSS({relativeTo: './dist/', target: './dist/', rebase: true}))
     .pipe(gulp.dest(OUTPIT_FOLDER_PATH));
 
 });
@@ -96,5 +94,5 @@ gulp.task('transpile-all-scss', function () {
  */
 gulp.task('prod', ['clean'], function () {
   runSequence(
-    'transpile-client-ts', 'minimize-js', 'minimize-css', 'add-single-imports');
+    'transpile-client-ts', 'minimize-js', 'minimize-css');
 });

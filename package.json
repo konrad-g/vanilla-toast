@@ -1,0 +1,42 @@
+{
+  "name": "vanilla-toast",
+  "version": "1.0.0",
+  "description": "Vanilla Toast is a JavaScript notification element that doesn't require any dependencies.",
+  "main": "gulpfile.js",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-clean-css": "2.0.6",
+    "gulp-concat": "^2.6.1",
+    "gulp-concat-css": "^2.3.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
+    "gulp-run-sequence": "^0.3.2",
+    "gulp-scss": "^1.4.0",
+    "gulp-sourcemaps": "^2.6.0",
+    "gulp-typescript": "^3.1.6",
+    "gulp-uglify": "^2.1.2",
+    "gulp-watch": "^4.3.11",
+    "typescript": "^2.5.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/konrad-g/vanilla-toast.git"
+  },
+  "keywords": [
+    "vanilla",
+    "toast",
+    "typescript",
+    "ts",
+    "notification"
+  ],
+  "author": "Konrad Gadzinowski <contact@konradg.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/konrad-g/vanilla-toast/issues"
+  },
+  "homepage": "https://github.com/konrad-g/vanilla-toast#readme"
+}

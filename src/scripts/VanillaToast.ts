@@ -1,12 +1,10 @@
-/// <reference path="../../../../node_modules/@types/jquery/index.d.ts" />
-
 enum TypeToast {
   INFO,
   WARNING,
   ERROR
 }
 
-class Toast {
+class VanillaToast {
 
   private static FADE_MS = 400;
   private REMOVE_TIME_MS = 2000;
@@ -83,7 +81,7 @@ class Toast {
       self.removeToast(toast)
     }, self.duration);
 
-    toast.fadeIn(Toast.FADE_MS);
+    toast.fadeIn(VanillaToast.FADE_MS);
 
     return toast;
   }
@@ -100,7 +98,7 @@ class Toast {
 
   private removeToast(toast: any) {
 
-    toast.fadeOut(Toast.FADE_MS, function () {
+    toast.fadeOut(VanillaToast.FADE_MS, function () {
         toast.remove();
       }
     );
