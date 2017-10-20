@@ -1,10 +1,36 @@
 .dj-toast-container {
-  display: block;
-  bottom: 5px;
-  left: 5px;
+  display: flex;
   position: absolute;
   width: 100%;
   max-width: 350px;
+}
+
+.dj-toast-container-bottom-left {
+  @extend .dj-toast-container;
+  bottom: 5px;
+  left: 5px;
+  flex-direction: column-reverse;
+}
+
+.dj-toast-container-bottom-right {
+  @extend .dj-toast-container;
+  bottom: 5px;
+  right: 5px;
+  flex-direction: column-reverse;
+}
+
+.dj-toast-container-top-left {
+  @extend .dj-toast-container;
+  top: 5px;
+  left: 5px;
+  flex-direction: column;
+}
+
+.dj-toast-container-top-right {
+  @extend .dj-toast-container;
+  top: 5px;
+  right: 5px;
+  flex-direction: column;
 }
 
 .dj-toast {

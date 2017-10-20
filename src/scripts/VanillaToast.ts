@@ -1,10 +1,17 @@
-enum TypeToast {
+enum ToastType {
   SUCCESS = "success",
   INFO = "info",
   WARNING = "warning",
   ERROR = "error",
   PLAIN = "plain",
   CUSTOM = "custom"
+}
+
+enum ToastPosition {
+  TOP_RIGHT = "top-right",
+  TOP_LEFT = "top-left",
+  BOTTOM_RIGHT = "bottom-right",
+  BOTTOM_LEFT = "bottom-left"
 }
 
 class VanillaToast {
@@ -14,56 +21,59 @@ class VanillaToast {
 
   private parent: any;
   private duration;
-  private container: any;
+  private containerTopLeft: any;
+  private containerTopRight: any;
+  private containerBottomLeft: any;
+  private containerBottomRight: any;
 
   constructor(parent: any) {
     this.parent = parent;
     this.duration = this.REMOVE_TIME_MS;
   }
 
-  public showSuccess(title: string, message: string): HTMLElement {
-    let text: HTMLElement = this.getCustomToast(title, message, TypeToast.SUCCESS);
-    let toast: HTMLElement = this.addToast(text);
+  public showSuccess(title: string, message: string, position: ToastPosition = ToastPosition.BOTTOM_LEFT): HTMLElement {
+    let text: HTMLElement = this.getCustomToast(title, message, ToastType.SUCCESS);
+    let toast: HTMLElement = this.addToast(text, position);
     return toast;
   }
 
-  public showInfo(title: string, message: string): HTMLElement {
-    let text: HTMLElement = this.getCustomToast(title, message, TypeToast.INFO);
-    let toast: HTMLElement = this.addToast(text);
+  public showInfo(title: string, message: string, position: ToastPosition = ToastPosition.BOTTOM_LEFT): HTMLElement {
+    let text: HTMLElement = this.getCustomToast(title, message, ToastType.INFO);
+    let toast: HTMLElement = this.addToast(text, position);
     return toast;
   }
 
-  public showWarning(title: string, message: string): HTMLElement {
-    let text: HTMLElement = this.getCustomToast(title, message, TypeToast.WARNING);
-    let toast: HTMLElement = this.addToast(text);
+  public showWarning(title: string, message: string, position: ToastPosition = ToastPosition.BOTTOM_LEFT): HTMLElement {
+    let text: HTMLElement = this.getCustomToast(title, message, ToastType.WARNING);
+    let toast: HTMLElement = this.addToast(text, position);
     return toast;
   }
 
-  public showError(title: string, message: string): HTMLElement {
-    let text: HTMLElement = this.getCustomToast(title, message, TypeToast.ERROR);
-    let toast: HTMLElement = this.addToast(text);
+  public showError(title: string, message: string, position: ToastPosition = ToastPosition.BOTTOM_LEFT): HTMLElement {
+    let text: HTMLElement = this.getCustomToast(title, message, ToastType.ERROR);
+    let toast: HTMLElement = this.addToast(text, position);
     return toast;
   }
 
-  public showPlain(title: string, message: string): HTMLElement {
-    let text: HTMLElement = this.getCustomToast(title, message, TypeToast.PLAIN);
-    let toast: HTMLElement = this.addToast(text);
+  public showPlain(title: string, message: string, position: ToastPosition = ToastPosition.BOTTOM_LEFT): HTMLElement {
+    let text: HTMLElement = this.getCustomToast(title, message, ToastType.PLAIN);
+    let toast: HTMLElement = this.addToast(text, position);
     return toast;
   }
 
-  public showCustom(title: string, message: string, iconUrl: string): HTMLElement {
-    let text: HTMLElement = this.getCustomToast(title, message, TypeToast.CUSTOM, iconUrl);
-    let toast: HTMLElement = this.addToast(text);
+  public showCustom(title: string, message: string, iconUrl: string, position: ToastPosition = ToastPosition.BOTTOM_LEFT): HTMLElement {
+    let text: HTMLElement = this.getCustomToast(title, message, ToastType.CUSTOM, iconUrl);
+    let toast: HTMLElement = this.addToast(text, position);
     return toast;
   }
 
-  private getCustomToast(title: string, message: string, type: TypeToast, iconUrl?: string): HTMLElement {
+  private getCustomToast(title: string, message: string, type: ToastType, iconUrl?: string): HTMLElement {
 
     if (!title) title = " ";
     if (!message) message = " ";
 
     let icon = '<div class="dj-toast-icon"></div>';
-    if (type == TypeToast.CUSTOM) {
+    if (type == ToastType.CUSTOM) {
       icon = '<div class="dj-toast-icon" style="background-image: url(' + iconUrl + ');"></div>';
     }
 
@@ -78,7 +88,7 @@ class VanillaToast {
     );
 
     toast.fade = (type: string, ms: number, onEnd?: () => void) => {
-      let self:any = toast;
+      let self: any = toast;
 
       let isIn = type === 'in',
         opacity = isIn ? 0 : 1,
@@ -86,7 +96,7 @@ class VanillaToast {
         duration = ms,
         gap = interval / duration;
 
-      if(isIn) {
+      if (isIn) {
         self.style.display = 'block';
         self.style.opacity = opacity;
       }
@@ -95,8 +105,8 @@ class VanillaToast {
         opacity = isIn ? opacity + gap : opacity - gap;
         self.style.opacity = opacity;
 
-        if(opacity <= 0) self.style.display = 'none'
-        if(opacity <= 0 || opacity >= 1) {
+        if (opacity <= 0) self.style.display = 'none'
+        if (opacity <= 0 || opacity >= 1) {
           window.clearInterval(fading);
           if (onEnd != null) onEnd();
         }
@@ -116,11 +126,11 @@ class VanillaToast {
     return toast;
   }
 
-  private addToast(toast: any): HTMLElement {
+  private addToast(toast: any, position: ToastPosition): HTMLElement {
 
     let self = this;
 
-    let container: any = this.getContainer();
+    let container: any = this.getContainer(position);
     container.appendChild(toast);
 
     // Add close button
@@ -141,16 +151,36 @@ class VanillaToast {
     return toast;
   }
 
-  private getContainer(): any {
+  private getContainer(position: ToastPosition): any {
 
-    if (!this.container) {
-      // Container doesn't exist
-      this.container = document.createElement("div");
-      this.container.className = "dj-toast-container";
-      this.parent.appendChild(this.container);
+    if (position == ToastPosition.TOP_LEFT && !this.containerTopLeft) {
+      this.containerTopLeft = this.createContainer(position);
+    } else if (position == ToastPosition.TOP_RIGHT && !this.containerTopRight) {
+      this.containerTopRight = this.createContainer(position);
+    } else if (position == ToastPosition.BOTTOM_LEFT && !this.containerBottomLeft) {
+      this.containerBottomLeft = this.createContainer(position);
+    } else if (position == ToastPosition.BOTTOM_RIGHT && !this.containerBottomRight) {
+      this.containerBottomRight = this.createContainer(position);
     }
 
-    return this.container;
+    if (position == ToastPosition.TOP_LEFT) {
+      return this.containerTopLeft;
+    } else if (position == ToastPosition.TOP_RIGHT) {
+      return this.containerTopRight;
+    } else if (position == ToastPosition.BOTTOM_LEFT) {
+      return this.containerBottomLeft;
+    } else if (position == ToastPosition.BOTTOM_RIGHT) {
+      return this.containerBottomRight;
+    }
+
+    return this.containerBottomLeft;
+  }
+
+  private createContainer(position: ToastPosition): any {
+    let container = document.createElement("div");
+    container.className = "dj-toast-container-" + position;
+    this.parent.appendChild(container);
+    return container;
   }
 
   private removeToast(toast: any) {

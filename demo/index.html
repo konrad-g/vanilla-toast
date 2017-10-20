@@ -38,14 +38,10 @@
   </div>
   <div class="column-right">
     <div class="column-title">Position</div>
-    <input id="position-bottom-left" type="radio" name="position" value="bottom-left" checked/><label
-    for="position-bottom-left">Bottom Left</label>
-    <!--
-    TODO: Add handling different positions
-    <input id="position-bottom-right" type="radio" name="position" value="bottom-right"/><label for="position-bottom-right">Bottom Right</label>
-    <input id="position-top-left" type="radio" name="position" value="top-left"/><label for="position-top-left">Top Left</label>
-    <input id="position-top-right" type="radio" name="position" value="top-right"/><label for="position-top-right">Top Right</label>
-    -->
+    <input id="bottom-left" type="radio" name="position" value="bottom-left" checked/><label for="bottom-left">Bottom Left</label>
+    <input id="bottom-right" type="radio" name="position" value="bottom-right"/><label for="bottom-right">Bottom Right</label>
+    <input id="top-left" type="radio" name="position" value="top-left"/><label for="top-left">Top Left</label>
+    <input id="top-right" type="radio" name="position" value="top-right"/><label for="top-right">Top Right</label>
   </div>
 </div>
 
@@ -62,26 +58,25 @@
   function showToast(toast) {
     var type = document.querySelector('input[name="type"]:checked').value;
     var position = document.querySelector('input[name="position"]:checked').value;
-    // TODO: Handle position
 
     switch (type) {
       case "info":
-        toast.showInfo("This is info. It is really long and it doesn't really fit into this small toast", "This is info message");
+        toast.showInfo("This is info. It is really long and it doesn't really fit into this small toast", "This is info message", position);
         break;
       case "success":
-        toast.showSuccess("Success", "You made it. Congratulations!");
+        toast.showSuccess("Success", "You made it. Congratulations!", position);
         break;
       case "warning":
-        toast.showWarning("This is warning", "This is warning message. It is really long and it doesn't really fit into this small toast");
+        toast.showWarning("This is warning", "This is warning message. It is really long and it doesn't really fit into this small toast", position);
         break;
       case "error":
-        toast.showError("This is error", "This is error message. It is really long and it doesn't really fit into this small toast");
+        toast.showError("This is error", "This is error message. It is really long and it doesn't really fit into this small toast", position);
         break;
       case "plain":
-        toast.showPlain("This is simple message", "This is error message. It is really long and it doesn't really fit into this small toast");
+        toast.showPlain("This is simple message", "This is error message. It is really long and it doesn't really fit into this small toast", position);
         break;
       case "custom":
-        toast.showCustom("Cookie!", "Man, I love cookies!", "icCookie.svg");
+        toast.showCustom("Cookie!", "Man, I love cookies!", "icCookie.svg", position);
         break;
     }
   }
