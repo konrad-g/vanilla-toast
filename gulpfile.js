@@ -24,7 +24,7 @@ var IMPORT_STYLES = [
 ];
 
 var IMPORT_SCRIPTS = [
-  "./src/VanillaToast.js"
+  "./src/scripts/VanillaToast.js"
 ];
 
 gulp.task('clean', function () {
@@ -36,7 +36,7 @@ gulp.task('clean', function () {
 gulp.task('minimize-js', function () {
 
   gulp.src(IMPORT_SCRIPTS)
-    .pipe(concatJs({path: 'VanillaToast.min.js'}))
+    .pipe(concatJs({path: 'vanilla-toast.min.js'}))
     .pipe(uglify())
     .pipe(gulp.dest(OUTPIT_FOLDER_PATH));
 
@@ -45,7 +45,7 @@ gulp.task('minimize-js', function () {
 gulp.task('minimize-css', function () {
 
   gulp.src(IMPORT_STYLES)
-    .pipe(concatCss('VanillaToast.min.css', {rebaseUrls: true}))
+    .pipe(concatCss('vanilla-toast.min.css', {rebaseUrls: true}))
     .pipe(cleanCSS({relativeTo: './dist/', target: './dist/', rebase: true}))
     .pipe(gulp.dest(OUTPIT_FOLDER_PATH));
 

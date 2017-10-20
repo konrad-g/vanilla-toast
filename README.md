@@ -7,8 +7,10 @@ Demo application can be found in `/demo` folder.
 ## How To Use
 
 ## Suggested Dependencies For Additional Support
-- PEP
-- Web Elements
+This element is using pointer events. As of today not all browser support this feature.  
+[Browser support](http://caniuse.com/#search=pointer%20events)  
+  
+It might be necessary for you to use [Pointer Events Polyfill](https://github.com/jquery/PEP)  
 
 ## How To Develop
 In order to develop this element, you need to have Node.js installed.  
