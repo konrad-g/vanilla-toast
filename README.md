@@ -9,6 +9,8 @@ Vanilla Toast is a JavaScript notification element that doesn't require any depe
 ## How To Use
 
 ## Suggested Dependencies For Additional Support
+- PEP
+- Web Elements
 
 ## How To Develop
 
