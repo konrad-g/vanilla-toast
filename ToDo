@@ -1,8 +1,5 @@
 To Do:
-- Add demo
-- Add setting custom timeout
+- Add setting custom timeout (add to demo)
+- Add configurable position
 - Add Bower and NPM instruction
 - Release v1.0
---
-- Add configurable position
-- Add in a form of Web Component
