@@ -1,7 +1,10 @@
 enum TypeToast {
-  INFO,
-  WARNING,
-  ERROR
+  SUCCESS = "success",
+  INFO = "info",
+  WARNING = "warning",
+  ERROR = "error",
+  PLAIN = "plain",
+  CUSTOM = "custom"
 }
 
 class VanillaToast {
@@ -17,48 +20,57 @@ class VanillaToast {
     this.duration = this.REMOVE_TIME_MS;
   }
 
-  public showSuccess(title: string, message: string) {
-    let text: HTMLElement = this.getCustomToast(title, message, "success");
-    let toast: HTMLElement = this.addToast(text);
-  }
-
-  public showInfo(title: string, message: string) {
-    let text: HTMLElement = this.getCustomToast(title, message, "info");
-    let toast: HTMLElement = this.addToast(text);
-  }
-
-  public showWarning(title: string, message: string) {
-    let text: HTMLElement = this.getCustomToast(title, message, "warning");
-    let toast: HTMLElement = this.addToast(text);
-  }
-
-  public showError(title: string, message: string) {
-    let text: HTMLElement = this.getCustomToast(title, message, "error");
-    let toast: HTMLElement = this.addToast(text);
-  }
-
-  public showPlain(title: string, message: string): HTMLElement {
-    let text: HTMLElement = this.getCustomToast(title, message, "plain");
-    let toast: HTMLElement = this.addToast(text);
-  }
-
-  public showCustom(title: string, message: string, iconUrl: string): HTMLElement {
-    // TODO: Add
-    let text: HTMLElement = this.getCustomToast(title, message, "error");
+  public showSuccess(title: string, message: string): HTMLElement {
+    let text: HTMLElement = this.getCustomToast(title, message, TypeToast.SUCCESS);
     let toast: HTMLElement = this.addToast(text);
     return toast;
   }
 
-  private getCustomToast(title: string, message: string, type: string): HTMLElement {
+  public showInfo(title: string, message: string): HTMLElement {
+    let text: HTMLElement = this.getCustomToast(title, message, TypeToast.INFO);
+    let toast: HTMLElement = this.addToast(text);
+    return toast;
+  }
+
+  public showWarning(title: string, message: string): HTMLElement {
+    let text: HTMLElement = this.getCustomToast(title, message, TypeToast.WARNING);
+    let toast: HTMLElement = this.addToast(text);
+    return toast;
+  }
+
+  public showError(title: string, message: string): HTMLElement {
+    let text: HTMLElement = this.getCustomToast(title, message, TypeToast.ERROR);
+    let toast: HTMLElement = this.addToast(text);
+    return toast;
+  }
+
+  public showPlain(title: string, message: string): HTMLElement {
+    let text: HTMLElement = this.getCustomToast(title, message, TypeToast.PLAIN);
+    let toast: HTMLElement = this.addToast(text);
+    return toast;
+  }
+
+  public showCustom(title: string, message: string, iconUrl: string): HTMLElement {
+    let text: HTMLElement = this.getCustomToast(title, message, TypeToast.CUSTOM, iconUrl);
+    let toast: HTMLElement = this.addToast(text);
+    return toast;
+  }
+
+  private getCustomToast(title: string, message: string, type: TypeToast, iconUrl?: string): HTMLElement {
 
     if (!title) title = " ";
     if (!message) message = " ";
 
+    let icon = '<div class="dj-toast-icon"></div>';
+    if (type == TypeToast.CUSTOM) {
+      icon = '<div class="dj-toast-icon" style="background-image: url(' + iconUrl + ');"></div>';
+    }
+
     let toast: any = document.createElement("div");
-    toast.className = "dj-toast";
+    toast.className = "dj-toast dj-toast-" + type;
     toast.style.display = "none";
     toast.insertAdjacentHTML("afterbegin",
-      '<div class="dj-toast-icon-' + type + '"></div>' +
+      icon +
       '<div class="dj-toast-text">' +
       '<div class="dj-toast-title">' + title + '</div>' +
       '<div class="dj-toast-message">' + message + '</div></div>'

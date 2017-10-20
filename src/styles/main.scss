@@ -52,35 +52,39 @@
   float: left;
 }
 
-.dj-toast-icon-plain {
+.dj-toast-plain .dj-toast-text {
+  left: 5px;
+}
+
+.dj-toast-plain .dj-toast-icon {
   display: none;
 }
 
-.dj-toast-icon-info {
+.dj-toast-info .dj-toast-icon {
   @extend .dj-toast-icon;
   background-image: url("../assets/icToastInfo.svg");
   background-size: contain;
 }
 
-.dj-toast-icon-success {
+.dj-toast-success .dj-toast-icon {
   @extend .dj-toast-icon;
   background-image: url("../assets/icToastSuccess.svg");
   background-size: contain;
 }
 
-.dj-toast-icon-warning {
+.dj-toast-warning .dj-toast-icon {
   @extend .dj-toast-icon;
   background-image: url("../assets/icToastWarning.svg");
   background-size: contain;
 }
 
-.dj-toast-icon-error {
+.dj-toast-error .dj-toast-icon {
   @extend .dj-toast-icon;
   background-image: url("../assets/icToastError.svg");
   background-size: contain;
 }
 
-.dj-toast-icon-custom {
+.dj-toast-custom .dj-toast-icon {
   @extend .dj-toast-icon;
   background-size: contain;
 }

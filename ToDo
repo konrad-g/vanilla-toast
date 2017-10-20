@@ -1,11 +1,9 @@
 To Do:
 - Add demo
-- Add custom icons or no icons
-- No jQuery
+- Add setting custom timeout
 - Add Bower and NPM instruction
 - Release v1.0
 --
-- Add setting custom timeout
 - Add configurable position
 - Add in a form of Web Component
 - Demonstrate showing toast in a div
