@@ -13,6 +13,10 @@ This element is using pointer events. As of today not all browser support this f
   
 It might be necessary for you to use [Pointer Events Polyfill](https://github.com/jquery/PEP)  
 
+## To Install With Bower
+To use this element with Bower dependency manager, run:  
+`bower install vanilla-toast --save`  
+
 ## How To Develop
 In order to develop this element, you need to have Node.js installed.  
 
