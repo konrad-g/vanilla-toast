@@ -1,10 +1,8 @@
 # Vanilla Toast (vanilla-toast)
 Vanilla Toast is a JavaScript notification element that doesn't require any dependencies
 
-
-# It's during development phase and it's no suitable for usage.
-
 ## Demo
+Demo application can be found in `/demo` folder.
 
 ## How To Use
 
@@ -13,7 +11,6 @@ Vanilla Toast is a JavaScript notification element that doesn't require any depe
 - Web Elements
 
 ## How To Develop
-
 In order to develop this element, you need to have Node.js installed.  
 
 1. Install all development dependencies using command `npm install`.
