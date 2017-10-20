@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8"/>
-    <title>Vanilla Toast (vanilla-toast)</title>
+  <meta charset="UTF-8"/>
+  <title>Vanilla Toast (vanilla-toast)</title>
 
-    <!-- Element files -->
-    <script src="../src/scripts/VanillaToast.js"></script>
-    <link href="../src/styles/main.css" rel="stylesheet" type="text/css">
+  <!-- Element files -->
+  <script src="../src/scripts/VanillaToast.js"></script>
+  <link href="../src/styles/main.css" rel="stylesheet" type="text/css">
 
-    <!-- Demo -->
-    <style>
-      html {
-        width: 100%;
-        height: 100%;
-      }
-    </style>
+  <!-- Demo -->
+  <link href="main.css" rel="stylesheet" type="text/css"></link>
+
 </head>
 <body style="
     width: 100%;
@@ -27,71 +23,83 @@
 
 <h1>Vanilla Toast (vanilla-toast)</h1>
 
-<div class="control-panel">
-    <div class="column-left">
-        <div class="column-title">Type</div>
-        <input id="type-info" type="radio" name="type" value="info" checked/><label for="type-info">Info</label>
-        <input id="type-success" type="radio" name="type" value="success"/><label for="type-success">Success</label>
-        <input id="type-warning" type="radio" name="type" value="warning"/><label for="type-warning">Warning</label>
-        <input id="type-error" type="radio" name="type" value="error"/><label for="type-error">Error</label>
-        <input id="type-plain" type="radio" name="type" value="plain"/><label for="type-plain">Plain</label>
-        <input id="type-custom"type="radio" name="type" value="custom"/><label for="type-custom">Custom</label>
-        <button id="showToast">Show Toast</button>
-    </div>
-    <div class="column-right">
-          <div class="column-title">Position</div>
-          <input id="position-bottom-left" type="radio" name="position" value="bottom-left" checked/><label for="position-bottom-left">Bottom Left</label>
-          <!--
-          TODO: Add handling different positions
-          <input id="position-bottom-right" type="radio" name="position" value="bottom-right"/><label for="position-bottom-right">Bottom Right</label>
-          <input id="position-top-left" type="radio" name="position" value="top-left"/><label for="position-top-left">Top Left</label>
-          <input id="position-top-right" type="radio" name="position" value="top-right"/><label for="position-top-right">Top Right</label>
-          -->
-    </div>
+<div class="card control-panel">
+  <div class="column-left">
+    <div class="column-title">Type</div>
+    <input id="type-info" type="radio" name="type" value="info" checked/><label for="type-info">Info</label>
+    <input id="type-success" type="radio" name="type" value="success"/><label for="type-success">Success</label>
+    <input id="type-warning" type="radio" name="type" value="warning"/><label for="type-warning">Warning</label>
+    <input id="type-error" type="radio" name="type" value="error"/><label for="type-error">Error</label>
+    <input id="type-plain" type="radio" name="type" value="plain"/><label for="type-plain">Plain</label>
+    <input id="type-custom" type="radio" name="type" value="custom"/><label for="type-custom">Custom</label>
+    <button id="showToastInWindow">Show Toast in Window</button>
+    <button id="showToastInCard">Show Toast in Card</button>
+  </div>
+  <div class="column-right">
+    <div class="column-title">Position</div>
+    <input id="position-bottom-left" type="radio" name="position" value="bottom-left" checked/><label
+    for="position-bottom-left">Bottom Left</label>
+    <!--
+    TODO: Add handling different positions
+    <input id="position-bottom-right" type="radio" name="position" value="bottom-right"/><label for="position-bottom-right">Bottom Right</label>
+    <input id="position-top-left" type="radio" name="position" value="top-left"/><label for="position-top-left">Top Left</label>
+    <input id="position-top-right" type="radio" name="position" value="top-right"/><label for="position-top-right">Top Right</label>
+    -->
+  </div>
 </div>
 
-<div class="custom-container">
-
+<div class="card links">
+  <h2>Links:</h2>
+  <a href="https://github.com/konrad-g/vanilla-toast.git">Source Code</a>
 </div>
 
-<div class="links">
-    <h2>Links:</h2>
-    <a href="https://github.com/konrad-g/vanilla-toast.git">Source Code</a>
+<div class="card custom-container">
+
 </div>
 
 <script>
+  function showToast(toast) {
+    var type = document.querySelector('input[name="type"]:checked').value;
+    var position = document.querySelector('input[name="position"]:checked').value;
+    // TODO: Handle position
 
-    var toastParent = document.querySelector("body");
-    var toastLogger = new VanillaToast(toastParent);
+    switch (type) {
+      case "info":
+        toast.showInfo("This is info. It is really long and it doesn't really fit into this small toast", "This is info message");
+        break;
+      case "success":
+        toast.showSuccess("Success", "You made it. Congratulations!");
+        break;
+      case "warning":
+        toast.showWarning("This is warning", "This is warning message. It is really long and it doesn't really fit into this small toast");
+        break;
+      case "error":
+        toast.showError("This is error", "This is error message. It is really long and it doesn't really fit into this small toast");
+        break;
+      case "plain":
+        toast.showPlain("This is simple message", "This is error message. It is really long and it doesn't really fit into this small toast");
+        break;
+      case "custom":
+        toast.showCustom("Cookie!", "Man, I love cookies!", "icCookie.svg");
+        break;
+    }
+  }
 
-    var showToast = document.querySelector("#showToast");
-    showToast.addEventListener("click", function() {
-      var type = document.querySelector('input[name="type"]:checked').value;
-      var position = document.querySelector('input[name="position"]:checked').value;
-      // TODO: Handle position
+  var toastParentBody = document.querySelector("body");
+  var toastLoggerBody = new VanillaToast(toastParentBody);
 
-      switch (type) {
-        case "info":
-          toastLogger.showInfo("This is info. It is really long and it doesn't really fit into this small toast", "This is info message");
-          break;
-        case "success":
-          toastLogger.showSuccess("Success", "You made it. Congratulations!");
-          break;
-        case "warning":
-          toastLogger.showWarning("This is warning", "This is warning message. It is really long and it doesn't really fit into this small toast");
-          break;
-        case "error":
-          toastLogger.showError("This is error", "This is error message. It is really long and it doesn't really fit into this small toast");
-          break;
-        case "plain":
-          toastLogger.showPlain("This is simple message", "This is error message. It is really long and it doesn't really fit into this small toast");
-          break;
-        case "custom":
-          toastLogger.showCustom("Cookie!", "Man, I love cookies!", "icCookie.svg");
-          break;
-      }
-    });
+  var toastParentCard = document.querySelector(".custom-container");
+  var toastLoggerCard = new VanillaToast(toastParentCard);
 
+  var showToastInWindow = document.querySelector("#showToastInWindow");
+  showToastInWindow.addEventListener("pointerdown", function () {
+    showToast(toastLoggerBody);
+  });
+
+  var showToastInCard = document.querySelector("#showToastInCard");
+  showToastInCard.addEventListener("pointerdown", function () {
+    showToast(toastLoggerCard);
+  });
 </script>
 </body>
 

@@ -10,10 +10,11 @@ enum TypeToast {
 class VanillaToast {
 
   private static FADE_MS = 400;
-  private REMOVE_TIME_MS = 10000000;
+  private REMOVE_TIME_MS = 3000;
 
   private parent: any;
   private duration;
+  private container: any;
 
   constructor(parent: any) {
     this.parent = parent;
@@ -142,12 +143,14 @@ class VanillaToast {
 
   private getContainer(): any {
 
-    if (this.parent.getElementsByClassName("dj-toast-container").length == 0) {
+    if (!this.container) {
       // Container doesn't exist
-      this.parent.insertAdjacentHTML("afterbegin", "<div class=\"dj-toast-container\"></div>");
+      this.container = document.createElement("div");
+      this.container.className = "dj-toast-container";
+      this.parent.appendChild(this.container);
     }
 
-    return this.parent.getElementsByClassName("dj-toast-container")[0];
+    return this.container;
   }
 
   private removeToast(toast: any) {
