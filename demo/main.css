@@ -43,7 +43,15 @@ h1 {
   vertical-align: top;
 }
 
-input[type=radio] {
+input[type="text"], input[type="number"] {
+  margin-top: 5px;
+  font-size: 16px;
+  line-height: 16px;
+  padding: 5px;
+  border-radius: 6px;
+}
+
+input[type="radio"] {
   width: 15px;
   height: 15px;
   margin-right: 5px;

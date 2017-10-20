@@ -38,10 +38,13 @@
   </div>
   <div class="column-right">
     <div class="column-title">Position</div>
-    <input id="bottom-left" type="radio" name="position" value="bottom-left" checked/><label for="bottom-left">Bottom Left</label>
-    <input id="bottom-right" type="radio" name="position" value="bottom-right"/><label for="bottom-right">Bottom Right</label>
-    <input id="top-left" type="radio" name="position" value="top-left"/><label for="top-left">Top Left</label>
-    <input id="top-right" type="radio" name="position" value="top-right"/><label for="top-right">Top Right</label>
+    <input id="bottom-left" type="radio" name="position" value="bottom-left" checked/><label for="bottom-left">Bottom Left</label><br/>
+    <input id="bottom-right" type="radio" name="position" value="bottom-right"/><label for="bottom-right">Bottom Right</label><br/>
+    <input id="top-left" type="radio" name="position" value="top-left"/><label for="top-left">Top Left</label><br/>
+    <input id="top-right" type="radio" name="position" value="top-right"/><label for="top-right">Top Right</label><br/>
+    <br/>
+    <label for="timeout">Time out [ms]</label><br/>
+    <input id="timeout" name="timeout" value="3000" type="number" placeholder="Time out in milliseconds"/>
   </div>
 </div>
 
@@ -58,25 +61,26 @@
   function showToast(toast) {
     var type = document.querySelector('input[name="type"]:checked').value;
     var position = document.querySelector('input[name="position"]:checked').value;
+    var timeOutMs = document.getElementById("timeout").value;
 
     switch (type) {
       case "info":
-        toast.showInfo("This is info. It is really long and it doesn't really fit into this small toast", "This is info message", position);
+        toast.showInfo("This is info. It is really long and it doesn't really fit into this small toast", "This is info message", position, timeOutMs);
         break;
       case "success":
-        toast.showSuccess("Success", "You made it. Congratulations!", position);
+        toast.showSuccess("Success", "You made it. Congratulations!", position, timeOutMs);
         break;
       case "warning":
-        toast.showWarning("This is warning", "This is warning message. It is really long and it doesn't really fit into this small toast", position);
+        toast.showWarning("This is warning", "This is warning message. It is really long and it doesn't really fit into this small toast", position, timeOutMs);
         break;
       case "error":
-        toast.showError("This is error", "This is error message. It is really long and it doesn't really fit into this small toast", position);
+        toast.showError("This is error", "This is error message. It is really long and it doesn't really fit into this small toast", position, timeOutMs);
         break;
       case "plain":
-        toast.showPlain("This is simple message", "This is error message. It is really long and it doesn't really fit into this small toast", position);
+        toast.showPlain("This is simple message", "This is error message. It is really long and it doesn't really fit into this small toast", position, timeOutMs);
         break;
       case "custom":
-        toast.showCustom("Cookie!", "Man, I love cookies!", "icCookie.svg", position);
+        toast.showCustom("Cookie!", "Man, I love cookies!", "icCookie.svg", position, timeOutMs);
         break;
     }
   }

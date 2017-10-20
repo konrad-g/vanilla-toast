@@ -18,9 +18,9 @@ class VanillaToast {
 
   private static FADE_MS = 400;
   private REMOVE_TIME_MS = 3000;
+  private REMOVE_TIME_MIN_MS = 300;
 
   private parent: any;
-  private duration;
   private containerTopLeft: any;
   private containerTopRight: any;
   private containerBottomLeft: any;
@@ -28,42 +28,41 @@ class VanillaToast {
 
   constructor(parent: any) {
     this.parent = parent;
-    this.duration = this.REMOVE_TIME_MS;
   }
 
-  public showSuccess(title: string, message: string, position: ToastPosition = ToastPosition.BOTTOM_LEFT): HTMLElement {
+  public showSuccess(title: string, message: string, position: ToastPosition = ToastPosition.BOTTOM_LEFT, duration = this.REMOVE_TIME_MS): HTMLElement {
     let text: HTMLElement = this.getCustomToast(title, message, ToastType.SUCCESS);
-    let toast: HTMLElement = this.addToast(text, position);
+    let toast: HTMLElement = this.addToast(text, position, duration);
     return toast;
   }
 
-  public showInfo(title: string, message: string, position: ToastPosition = ToastPosition.BOTTOM_LEFT): HTMLElement {
+  public showInfo(title: string, message: string, position: ToastPosition = ToastPosition.BOTTOM_LEFT, duration = this.REMOVE_TIME_MS): HTMLElement {
     let text: HTMLElement = this.getCustomToast(title, message, ToastType.INFO);
-    let toast: HTMLElement = this.addToast(text, position);
+    let toast: HTMLElement = this.addToast(text, position, duration);
     return toast;
   }
 
-  public showWarning(title: string, message: string, position: ToastPosition = ToastPosition.BOTTOM_LEFT): HTMLElement {
+  public showWarning(title: string, message: string, position: ToastPosition = ToastPosition.BOTTOM_LEFT, duration = this.REMOVE_TIME_MS): HTMLElement {
     let text: HTMLElement = this.getCustomToast(title, message, ToastType.WARNING);
-    let toast: HTMLElement = this.addToast(text, position);
+    let toast: HTMLElement = this.addToast(text, position, duration);
     return toast;
   }
 
-  public showError(title: string, message: string, position: ToastPosition = ToastPosition.BOTTOM_LEFT): HTMLElement {
+  public showError(title: string, message: string, position: ToastPosition = ToastPosition.BOTTOM_LEFT, duration = this.REMOVE_TIME_MS): HTMLElement {
     let text: HTMLElement = this.getCustomToast(title, message, ToastType.ERROR);
-    let toast: HTMLElement = this.addToast(text, position);
+    let toast: HTMLElement = this.addToast(text, position, duration);
     return toast;
   }
 
-  public showPlain(title: string, message: string, position: ToastPosition = ToastPosition.BOTTOM_LEFT): HTMLElement {
+  public showPlain(title: string, message: string, position: ToastPosition = ToastPosition.BOTTOM_LEFT, duration = this.REMOVE_TIME_MS): HTMLElement {
     let text: HTMLElement = this.getCustomToast(title, message, ToastType.PLAIN);
-    let toast: HTMLElement = this.addToast(text, position);
+    let toast: HTMLElement = this.addToast(text, position, duration);
     return toast;
   }
 
-  public showCustom(title: string, message: string, iconUrl: string, position: ToastPosition = ToastPosition.BOTTOM_LEFT): HTMLElement {
+  public showCustom(title: string, message: string, iconUrl: string, position: ToastPosition = ToastPosition.BOTTOM_LEFT, duration = this.REMOVE_TIME_MS): HTMLElement {
     let text: HTMLElement = this.getCustomToast(title, message, ToastType.CUSTOM, iconUrl);
-    let toast: HTMLElement = this.addToast(text, position);
+    let toast: HTMLElement = this.addToast(text, position, duration);
     return toast;
   }
 
@@ -126,9 +125,13 @@ class VanillaToast {
     return toast;
   }
 
-  private addToast(toast: any, position: ToastPosition): HTMLElement {
+  private addToast(toast: any, position: ToastPosition, duration: number = 0): HTMLElement {
 
     let self = this;
+
+    if (duration <= self.REMOVE_TIME_MIN_MS) {
+      duration = self.REMOVE_TIME_MIN_MS;
+    }
 
     let container: any = this.getContainer(position);
     container.appendChild(toast);
@@ -144,9 +147,9 @@ class VanillaToast {
 
     setTimeout(function () {
       self.removeToast(toast)
-    }, self.duration);
+    }, duration);
 
-    toast.fadeIn(VanillaToast.FADE_MS); // TODO: Customize time out
+    toast.fadeIn(VanillaToast.FADE_MS);
 
     return toast;
   }
