@@ -2,7 +2,7 @@
 Vanilla Toast is a tiny, yet powerful JavaScript notification element that doesn't require any dependencies.  
 
 ## Demo
-[Live Demo](http://htmlpreview.github.io/?https://github.com/konrad-g/vanilla-toast/blob/master/demo/index.html)  
+[Live Demo](https://konradg.com/vanilla-toast/demo/index.html)  
 Demo application can be found in `/demo` folder.  
 
 It shows all use cases.
