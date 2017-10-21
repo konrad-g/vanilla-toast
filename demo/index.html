@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8"/>
   <title>Vanilla Toast (vanilla-toast)</title>
+  <meta name="viewport" content="width=device-width">
+
+  <!-- Pointer Events Polyfill -->
+  <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
 
   <!-- Element files -->
   <script src="../dist/vanilla-toast.min.js"></script>
@@ -26,8 +30,8 @@
 <div class="card control-panel">
   <div class="column-left">
     <div class="column-title">Type</div>
-    <input id="type-info" type="radio" name="type" value="info" checked/><label for="type-info">Info</label><br/>
-    <input id="type-success" type="radio" name="type" value="success"/><label for="type-success">Success</label><br/>
+    <input id="type-info" type="radio" name="type" value="info"/><label for="type-info">Info</label><br/>
+    <input id="type-success" type="radio" name="type" value="success" checked/><label for="type-success">Success</label><br/>
     <input id="type-warning" type="radio" name="type" value="warning"/><label for="type-warning">Warning</label><br/>
     <input id="type-error" type="radio" name="type" value="error"/><label for="type-error">Error</label><br/>
     <input id="type-plain" type="radio" name="type" value="plain"/><label for="type-plain">Plain</label><br/>
@@ -38,9 +42,9 @@
   </div>
   <div class="column-right">
     <div class="column-title">Position</div>
-    <input id="bottom-left" type="radio" name="position" value="bottom-left" checked/><label for="bottom-left">Bottom Left</label><br/>
+    <input id="bottom-left" type="radio" name="position" value="bottom-left"/><label for="bottom-left">Bottom Left</label><br/>
     <input id="bottom-right" type="radio" name="position" value="bottom-right"/><label for="bottom-right">Bottom Right</label><br/>
-    <input id="top-left" type="radio" name="position" value="top-left"/><label for="top-left">Top Left</label><br/>
+    <input id="top-left" type="radio" name="position" value="top-left" checked/><label for="top-left">Top Left</label><br/>
     <input id="top-right" type="radio" name="position" value="top-right"/><label for="top-right">Top Right</label><br/>
     <br/>
     <label for="timeout">Time out [ms]</label><br/>
