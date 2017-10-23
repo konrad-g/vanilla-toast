@@ -138,7 +138,7 @@ class VanillaToast {
 
     let self = this;
 
-    if (duration <= self.REMOVE_TIME_MIN_MS) {
+    if (duration >= 0 && duration <= self.REMOVE_TIME_MIN_MS) {
       duration = self.REMOVE_TIME_MIN_MS;
     }
 
@@ -154,9 +154,11 @@ class VanillaToast {
       self.removeToast(toast);
     });
 
-    setTimeout(function () {
-      self.removeToast(toast)
-    }, duration);
+    if (duration > 0) {
+      setTimeout(function () {
+        self.removeToast(toast)
+      }, duration);
+    }
 
     toast.fadeIn(VanillaToast.FADE_MS);
 
