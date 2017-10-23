@@ -71,19 +71,19 @@ class VanillaToast {
     if (!title) title = " ";
     if (!message) message = " ";
 
-    let icon = '<div class="dj-toast-icon"></div>';
+    let icon = '<div class="vanilla-toast-icon"></div>';
     if (type == ToastType.CUSTOM) {
-      icon = '<div class="dj-toast-icon" style="background-image: url(' + iconUrl + ');"></div>';
+      icon = '<div class="vanilla-toast-icon" style="background-image: url(' + iconUrl + ');"></div>';
     }
 
     let toast: any = document.createElement("div");
-    toast.className = "dj-toast dj-toast-" + type;
+    toast.className = "vanilla-toast vanilla-toast-" + type;
     toast.style.display = "none";
     toast.insertAdjacentHTML("afterbegin",
       icon +
-      '<div class="dj-toast-text">' +
-      '<div class="dj-toast-title">' + title + '</div>' +
-      '<div class="dj-toast-message">' + message + '</div></div>'
+      '<div class="vanilla-toast-text">' +
+      '<div class="vanilla-toast-title">' + title + '</div>' +
+      '<div class="vanilla-toast-message">' + message + '</div></div>'
     );
 
     toast.fade = (type: string, ms: number, onEnd?: () => void) => {
@@ -138,7 +138,7 @@ class VanillaToast {
 
     // Add close button
     let closeBtn: HTMLElement = document.createElement("div");
-    closeBtn.className = "dj-toast-icon-close";
+    closeBtn.className = "vanilla-toast-icon-close";
     toast.appendChild(closeBtn);
 
     closeBtn.addEventListener("pointerdown", function () {
@@ -181,7 +181,7 @@ class VanillaToast {
 
   private createContainer(position: ToastPosition): any {
     let container = document.createElement("div");
-    container.className = "dj-toast-container-" + position;
+    container.className = "vanilla-toast-container-" + position;
     this.parent.appendChild(container);
     return container;
   }
