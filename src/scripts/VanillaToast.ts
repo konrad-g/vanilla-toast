@@ -27,7 +27,16 @@ class VanillaToast {
   private containerBottomRight: any;
 
   constructor(parent: any) {
-    this.parent = parent;
+    if (parent == null ||
+      parent == "body" ||
+      parent == "window" ||
+      parent == document.body ||
+      parent == window
+    ) {
+      this.useFixedParent();
+    } else {
+      this.parent = parent;
+    }
   }
 
   public showSuccess(title: string, message: string, position: ToastPosition = ToastPosition.BOTTOM_LEFT, duration = this.REMOVE_TIME_MS): HTMLElement {
@@ -184,6 +193,22 @@ class VanillaToast {
     container.className = "vanilla-toast-container-" + position;
     this.parent.appendChild(container);
     return container;
+  }
+
+  private useFixedParent() {
+
+    // Try to find already existing container
+    let containers = document.getElementsByClassName("vanilla-toast-container-fixed");
+    if (containers != null && containers.length > 0) {
+      this.parent = containers[0];
+      return;
+    }
+
+    let container = document.createElement("div");
+    container.className = "vanilla-toast-container-fixed";
+    document.body.appendChild(container);
+
+    this.parent = container;
   }
 
   private removeToast(toast: any) {
