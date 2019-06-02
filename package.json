@@ -1,6 +1,6 @@
 {
-  "name": "vanilla-toast",
-  "version": "1.0.0",
+  "name": "@kgadzinowski/vanilla-toast",
+  "version": "1.1.0",
   "description": "Vanilla Toast is a JavaScript notification element that doesn't require any dependencies.",
   "main": "gulpfile.js",
   "devDependencies": {
